@@ -1,42 +1,16 @@
+import "./index.css";
+import rulesHandlers from "./rulesHandlres";
+import { brick, paddle, ball } from "./canvasElements";
+
 const showRulesBtn = document.querySelector("#rules-btn");
 const closeRulesBtn = document.querySelector("#close-btn");
-const rules = document.querySelector("#rules");
+
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
 let score = 0;
 
-//ball
-const ball = {
-  x: canvas.width / 2,
-  y: canvas.height / 2,
-  size: 10,
-  dx: 4,
-  dy: -4,
-  speed: 4,
-};
-
-//paddle
-const paddle = {
-  x: canvas.width / 2 - 40,
-  y: canvas.height - 20,
-  w: 100,
-  h: 10,
-  speed: 8,
-  dx: 0,
-};
-
-//brick
-const brick = {
-  w: 70,
-  h: 20,
-  padding: 10,
-  offsetX: 45,
-  offsetY: 60,
-  visible: true,
-};
-
-//array of bricks
+// create array of bricks
 const brickRowCount = 9;
 const brickColumnCount = 5;
 const bricks = [];
@@ -162,16 +136,8 @@ const update = () => {
 };
 
 update();
-//rules
-const showRules = () => {
-  rules.classList.add("show");
-};
-const closeRules = () => {
-  rules.classList.remove("show");
-};
 
 const keyDown = (e) => {
-  console.log(e);
   if (e.key === "ArrowRight" || e.key === "Right") {
     console.log("it works");
     paddle.dx = paddle.speed;
@@ -194,6 +160,7 @@ const keyUp = (e) => {
 //paddle events
 document.addEventListener("keydown", keyDown);
 document.addEventListener("keyup", keyUp);
+
 //rules events
-showRulesBtn.addEventListener("click", showRules);
-closeRulesBtn.addEventListener("click", closeRules);
+showRulesBtn.addEventListener("click", rulesHandlers.showRules);
+closeRulesBtn.addEventListener("click", rulesHandlers.closeRules);
